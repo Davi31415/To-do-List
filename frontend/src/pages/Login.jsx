@@ -37,7 +37,7 @@ export default function Auth() {
       return;
     }
 
-    const resp = await fetch("http://localhost:3000/login", {
+    const resp = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export default function Auth() {
       return;
     }
 
-    const resp = await fetch("http://localhost:3000/register", {
+    const resp = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

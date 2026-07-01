@@ -33,7 +33,7 @@ export default function Taskmenu({ taskName, onUpdate }) {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/tasks/add", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/tasks/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

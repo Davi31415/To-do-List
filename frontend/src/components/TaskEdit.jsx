@@ -24,7 +24,7 @@ export default function Taskmenu({ taskId, onUpdate }) {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/tasks/update/${taskId}`,
+        `${import.meta.env.VITE_API_URL}/tasks/update/${taskId}`,
         {
           method: "PUT",
           headers: {

@@ -39,7 +39,7 @@ export default function Home() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/tasks", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/tasks`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

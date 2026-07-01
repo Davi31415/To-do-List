@@ -21,7 +21,7 @@ export default function Task({
 
   async function handleDelete(id) {
     try {
-      const res = await fetch(`http://localhost:3000/tasks/delete/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ export default function Task({
 
   async function onFinish(id) {
     try {
-      const res = await fetch(`http://localhost:3000/tasks/finish/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tasks/finish/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
