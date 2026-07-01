@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+body {
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
+.taskArea::-webkit-scrollbar,
+.taskName::-webkit-scrollbar {
+  width: 8px;
+  padding: 2px;
+}
+
+.taskArea::-webkit-scrollbar-button,
+.taskName::-webkit-scrollbar-button {
+  display: none;
+}
+
+.taskArea::-webkit-scrollbar-track,
+.taskName::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.taskArea::-webkit-scrollbar-thumb,
+.taskName::-webkit-scrollbar-thumb {
+  background: rgba(17, 17, 17, 0.5);
+  border-radius: 10px;
+}
+
+.taskArea::-webkit-scrollbar-thumb:hover,
+.taskName::-webkit-scrollbar-thumb:hover {
+  background: #1a1a1a;
+}
