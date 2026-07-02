@@ -11,11 +11,13 @@ export default function Taskmenu({ taskName, onUpdate }) {
 
   const [priority, setPriority] = useState("");
   const [date, setDate] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { taskList, setTaskList } = useContext(TasksContext);
 
   const taskId = crypto.randomUUID();
-
+  
   async function addTask() {
+    setIsLoading(true);
     if (priority === "" || date === "") {
       alert("Não pode ter campos vazios!");
       return;
@@ -33,20 +35,23 @@ export default function Taskmenu({ taskName, onUpdate }) {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/tasks/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/tasks/add`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            taskId: taskId,
+            task: taskName,
+            priority: priority,
+            day: date,
+            finished: false,
+          }),
         },
-        body: JSON.stringify({
-          taskId: taskId,
-          task: taskName,
-          priority: priority,
-          day: date,
-          finished: false,
-        }),
-      });
+      );
 
       if (!response.ok) throw new Error("Erro ao salvar tarefa no servidor");
 
@@ -65,6 +70,7 @@ export default function Taskmenu({ taskName, onUpdate }) {
       setPriority("");
       setDate("");
       toggleMenu();
+      setIsLoading(false);
     } catch (error) {
       console.error("Erro ao adicionar tarefa:", error);
       alert("Não foi possível salvar a tarefa no momento.");
@@ -139,7 +145,7 @@ export default function Taskmenu({ taskName, onUpdate }) {
           </div>
         </div>
         <button
-          onClick={() =>
+          onClick={() => 
             addTask({
               task: taskName,
               priority: priority,
@@ -148,10 +154,18 @@ export default function Taskmenu({ taskName, onUpdate }) {
               finished: false,
             })
           }
-          className="w-70 px-1.5 py-2 my-7 rounded text-black cursor-pointer"
-          style={{ backgroundColor: currentTheme.typography.highlight }}
+
+
+          
+          className="w-70 px-1.5 py-2 my-7 rounded text-black cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+          style={{ background: currentTheme.typography.highlight, color: "#000" }}
+          disabled={isLoading}
         >
-          Criar tarefa!
+          {isLoading ? (
+            <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+          ) : (
+            "Criar"
+          )}
         </button>
       </div>
     </div>

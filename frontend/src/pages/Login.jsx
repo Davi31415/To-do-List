@@ -187,7 +187,7 @@ export default function Auth() {
                   }}
                 />
                 <button
-                  className="w-full p-4 mt-4 rounded-xl font-semibold transition-transform hover:scale-[1.02] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full p-4 mt-4 rounded-xl transition-transform hover:scale-[1.02] cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                   style={{ background: typography.highlight, color: "#000" }}
                   onClick={isLogin ? doLogin : doRegister}
                   disabled={isLoading}
